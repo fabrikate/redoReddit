@@ -7,6 +7,9 @@ var request = require('ru');
 var mongoose = require('mongoose');
 var session = require('cookie-session');
 //TO DO: MIDDLEWARE
+var loginMiddleware = require('./middleware/loginHelper');
+var routeMiddleware = require('./middleware/routeHelper');
+var db = require('./models');
 
 app.engine('handlebars', exphbs({defaultLayout: 'main'}));
 app.set('view engine', 'handlebars');
@@ -22,3 +25,11 @@ app.use(session({
   name: 'redditCookie'
 }));
 
+//use login middleware
+app.use(loginMiddleware);
+
+require('./controllers/index');
+
+app.listen(3000, function() {
+  console.log('Server is running on port 3000');
+})
