@@ -1,0 +1,24 @@
+<h2> Post and Comments </h2>
+<table>
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Created By:</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    {{#each post}}
+    <tr>
+      <td>{{title}}</td>
+      <!-- <td>{{user}}</td> -->
+      <td>{{text}}</td>
+    </tr>
+    {{/each}}
+    {{#each post.comments}}
+    <tr>
+      <td>{{text}}</td>
+    </tr>
+    {{/each}}
+  </tbody>
+</table>

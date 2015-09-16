@@ -13,12 +13,8 @@ app.get('/posts/new', function (req,res){
 
 //create
 app.post('/posts', function (req,res){
-  db.Post.create({title: req.body.title, text: req.body.text}, function (err, user){
-    if (err){
-      res.render('/posts/new')
-    } else {
-      res.redirect('/posts')
-    }
+  db.Post.create({title: req.body.title, text: req.body.text}, function (err, user) {
+    res.redirect('/posts')
   });
 });
 
@@ -31,7 +27,7 @@ app.get('posts/:post_id', function (req,res){ //ask if we can string two populat
 
 //edit
 app.get('posts/:post_id/edit', function (req,res){
-  db.Post.findById(req.params.id, function (err, post){
+  db.Post.findById(req.params.post_id, function (err, post){
     res.render('posts/edit', {post: post})
   });
 });

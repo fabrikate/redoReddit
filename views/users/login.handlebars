@@ -1,1 +1,11 @@
-<h1>HELLO</h1>
+<h2>Login</h2>
+<form method='POST' action='/login'>
+  <label for='userName'>User name:
+    <input type='text' id='userName' name='user[name]' autofocus />
+  </label>
+  <label for='userPass'>Password:
+    <input type='password' id='userPass' name='user[password]' />
+  </label>
+  <input type='submit' value='Login'>
+</form>
+<a href='/signup'>Don't have an account?</a>

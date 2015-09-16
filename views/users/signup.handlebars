@@ -1,1 +1,11 @@
-<h2> I work too!</h2>
+<h2>Sign Up</h2>
+<form method='POST' action='/signup'>
+  <label for='userName'>
+    <input type='text' id='userName' name='user[name]' autofocus />
+  </label>
+  <label for='userPass'>
+    <input type='password' id='userPass' name='user[password]' />
+  </label>
+  <input type='submit' value='Login'>
+</form>
+<a href='/login'>Already have an account? Login here</a>
