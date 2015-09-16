@@ -1,1 +1,5 @@
-//comment to add to github
+app.get('/')//BREA
+
+app.get('*', function(req, res) {
+  res.render('404');
+})
