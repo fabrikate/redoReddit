@@ -1,9 +1,8 @@
+app.get('/', function(req, res) {
+  res.redirect('/posts');
+})
 require('./posts');
 
-app.get('/', function(req, res) {
-  res.render('users/login');
-})
-
-app.get('*', function(req, res) {
-  res.render('404');
-})
+// app.get('*', function(req, res) {
+//   res.render('404');
+// })

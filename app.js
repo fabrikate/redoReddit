@@ -30,32 +30,29 @@ app.use(loginMiddleware);
 
 require('./controllers/index');
 
-// homepage
-app.get('/', function(req, res) {
-  res.redirect('/posts');
-});
-
 // sign up route
 app.get('/signup', routeMiddleware.preventLoginSignup, function(req, res) {
-  res.render('signup');
+  res.render('users/signup');
 });
 
 app.post('/signup', function(req, res) {
   var newUser = req.body.user;
+  console.log(newUser)
   db.User.create(newUser, function(err, user) {
     if(user) {
       req.login(user);
-      req.redirect('/posts');
+      console.log('user is ',user);
+      res.redirect('/posts');
     } else {
       console.log(err);
-      res.render('signup');
+      res.render('users/signup');
     }
   });
 });
 
 //login route
 app.get('/login', routeMiddleware.preventLoginSignup, function(req, res) {
-  res.render('login');
+  res.render('users/login');
 });
 
 app.post('/login', function(req, res) {
@@ -64,10 +61,16 @@ app.post('/login', function(req, res) {
       req.login(user);
       res.redirect('/posts');
     } else {
-      res.render('login', console.log('Error'));
+      res.render('users/login', console.log('Error'));
     }
   });
 });
+
+//log out
+app.get('/logout', function(req, res) {
+  req.logout();
+  res.redirect('/login');
+})
 
 app.listen(3000, function() {
   console.log('Server is running on port 3000');
