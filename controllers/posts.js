@@ -19,35 +19,35 @@ app.post('/posts', function (req,res){
 });
 
 //show
-app.get('posts/:post_id', function (req,res){ //ask if we can string two populates together
+app.get('/posts/:id', function (req,res){ //ask if we can string two populates together
   db.Post.findById(req.params.id).populate('comments').exec(function (err,post){
-    res.render('/posts/show', {post: post})
+    res.render('posts/show', {post: post})
   });
 });
 
 //edit
-app.get('posts/:post_id/edit', function (req,res){
-  db.Post.findById(req.params.post_id, function (err, post){
+app.get('/posts/:id/edit', function (req,res){
+  db.Post.findById(req.params.id, function (err, post){
     res.render('posts/edit', {post: post})
   });
 });
 
 //update
-app.put('posts/:post_id', function (req,res){
+app.put('/posts/:id', function (req,res){
   db.Post.findByIdAndUpdate(req.params.id, {title: req.body.title, text: req.body.text}, function (err,post){
     if (err){
       res.render('posts/edit')
     } else {
-      res.redirect('/posts/:post_id')
+      res.redirect('/posts/' + req.params.id);
     }
   })
 })
 
 //destroy
-app.delete('posts/:post_id', function (req,res){
+app.delete('/posts/:id', function (req,res){
   db.Post.findByIdAndRemove (req.params.id, function (err,post){
     if (err){
-      res.render('/posts/show');
+      res.render('posts/show');
     } else {
       res.redirect('/posts');
     }

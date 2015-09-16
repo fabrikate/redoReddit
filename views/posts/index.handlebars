@@ -8,15 +8,17 @@
       <th>Title</th>
       <th>Created By:</th>
       <th>Edit</th>
+      <th>Delete</th>
     </tr>
   </thead>
   <tbody>
     {{#each posts}}
     <tr>
-      <td>{{title}}</td>
+      <td><a href='posts/{{id}}'>{{title}}</a></td>
       <!-- <td>{{user}}</td> -->
       <td>{{text}}</td>
       <td><a href='/posts/{{id}}/edit'>Edit</a></td>
+      <td><form action='/posts/{{id}}?_method=delete' method='POST'><button>x</button></form></td>
     </tr>
     {{/each}}
   </tbody>
