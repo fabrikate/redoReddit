@@ -30,6 +30,46 @@ app.use(loginMiddleware);
 
 require('./controllers/index');
 
+// homepage
+app.get('/', function(req, res) {
+  res.redirect('/posts');
+});
+
+// sign up route
+app.get('/signup', routeMiddleware.preventLoginSignup, function(req, res) {
+  res.render('signup');
+});
+
+app.post('/signup', function(req, res) {
+  var newUser = req.body.user;
+  db.User.create(newUser, function(err, user) {
+    if(user) {
+      req.login(user);
+      req.redirect('/posts');
+    } else {
+      console.log(err);
+      res.render('signup');
+    }
+  });
+});
+
+//login route
+app.get('/login', routeMiddleware.preventLoginSignup, function(req, res) {
+  res.render('login');
+});
+
+app.post('/login', function(req, res) {
+  db.User.authenticate(req.body.user, function(err, user) { //TO DO: Write authenticate function! ks
+    if(!err && user !== null) {
+      req.login(user);
+      res.redirect('/posts');
+    } else {
+      res.render('login', console.log('Error'));
+    }
+  });
+});
+
+
 app.listen(3000, function() {
   console.log('Server is running on port 3000');
 })
