@@ -1,0 +1,24 @@
+<h2>Reddit</h2>
+<a href='/login'>Login to your account</a>
+<a href='/signup'>Don't have an account? Sign up</a>
+<a href='/posts/new'>Create a Post</a>
+<table>
+  <thead>
+    <tr>
+      <th>Created By:</th>
+      <th>Edit</th>
+      <th>Delete</th>
+    </tr>
+  </thead>
+  <tbody>
+    {{#each post.comments}}
+    <tr>
+      <td>{{text}}</td>
+      <td><a href='/posts/{{post._id}}/comments/new'>✏</a></td>
+      <td><a href='/posts/{{post._id}}/comments/{{id}}/edit'>Edit</a></td>
+      <td><form action='/posts/{{post._id}}/comments/{{id}}?_method=delete' method='POST'><button>x</button></form></td>
+    </tr>
+    {{/each}}
+  </tbody>
+</table>
+<a href='/logout'>Logout</a>
