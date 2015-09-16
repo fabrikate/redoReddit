@@ -11,7 +11,7 @@ var userSchema = new mongoose.Schema({
   ]};
 })
 
-//un and password authentication
+//userName and password authentication
 userSchema.pre('save', function(next) {
   var user = this;
   if (!user.isModified('password')) {
@@ -29,6 +29,11 @@ userSchema.pre('save', function(next) {
       next()
     });
   });
+});
+
+userSchema.pre('remove', function(callback) {
+  User.remove({user_id: this._id}).exec();
+  callback();
 });
 
 userSchema.methods.checkPassword = function(password, callback) {
