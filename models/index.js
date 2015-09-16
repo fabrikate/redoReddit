@@ -1,8 +1,6 @@
-//comment to add to github
-
 var mongoose =require("mongoose");
 mongoose.connect('mongodb://localhost/reddit');
 
-module.exports.Post = reqiure('.post');
-module.exports.Comment = reqiure('.comment');
-module.exports.User = reqiure('.user');
+module.exports.Post = require('post');
+module.exports.Comment = require('comment');
+module.exports.User = require('user');

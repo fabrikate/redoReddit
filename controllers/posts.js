@@ -1,6 +1,4 @@
-
-
-//index 
+//index
 app.get('/posts', function (req,res){
   db.Post.find({}, function(err, posts){
     res.render('posts/index', {posts: posts})
@@ -45,7 +43,7 @@ app.put('posts/:post_id', function (req,res){
     } else {
       res.redirect('/posts/:post_id')
     }
-  })  
+  })
 })
 
 //destroy
