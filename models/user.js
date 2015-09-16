@@ -8,7 +8,7 @@ var userSchema = new mongoose.Schema({
   posts:[{
     type: mongoose.Schema.Types.ObjectId,
     ref: "Post"
-  ]};
+  }]
 })
 
 //userName and password authentication

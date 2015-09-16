@@ -1,3 +1,4 @@
+var db = require('../models/index');
 //index
 app.get('/posts', function (req,res){
   db.Post.find({}, function(err, posts){
@@ -50,9 +51,9 @@ app.put('posts/:post_id', function (req,res){
 app.delete('posts/:post_id', function (req,res){
   db.Post.findByIdAndRemove (req.params.id, function (err,post){
     if (err){
-      res.render('posts/show'){
+      res.render('/posts/show');
     } else {
-      res.redirect('/posts')
+      res.redirect('/posts');
     }
   });
 });
