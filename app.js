@@ -3,7 +3,7 @@ var app = express()
 var exphbs = require('express-handlebars');
 var methodOverride = require('method-Override');
 var bodyParser = require('body-Parser');
-var request = require('request');
+var request = require('ru');
 var mongoose = require('mongoose');
 var session = require('cookie-session');
 //TO DO: MIDDLEWARE

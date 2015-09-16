@@ -1,7 +1,6 @@
 {
   "name": "reddit",
   "version": "1.0.0",
-  "description": "",
   "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -17,6 +16,7 @@
   },
   "homepage": "https://github.com/fabrikate/redoReddit#readme",
   "dependencies": {
+    "bcrypt": "^0.8.5",
     "body-parser": "^1.14.0",
     "cookie-session": "^1.2.0",
     "express": "^4.13.3",
@@ -24,5 +24,6 @@
     "method-override": "^2.3.5",
     "mongoose": "^4.1.7",
     "request": "^2.62.0"
-  }
+  },
+  "description": ""
 }
