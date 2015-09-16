@@ -1,6 +1,6 @@
 var mongoose = require ('mongoose');
 
-var postSchema = new mongoose.Schema({ 
+var postSchema = new mongoose.Schema({
   title: String,
   text: String,
   user: {
@@ -15,5 +15,5 @@ var postSchema = new mongoose.Schema({
 });
 
 var Post = mongoose.model("Post", postSchema)
-//add .pre
+
 module.exports = Post;
