@@ -6,7 +6,7 @@ var bodyParser = require('body-Parser');
 var request = require('ru');
 var mongoose = require('mongoose');
 var session = require('cookie-session');
-//TO DO: MIDDLEWARE
+var bcrypt = require('bcrypt');
 var loginMiddleware = require('./middleware/loginHelper');
 var routeMiddleware = require('./middleware/routeHelper');
 var db = require('./models');
@@ -30,8 +30,6 @@ app.use(loginMiddleware);
 
 require('./controllers/index');
 
-<<<<<<< HEAD
-=======
 // homepage
 app.get('/', function(req, res) {
   res.redirect('/posts');
@@ -72,7 +70,6 @@ app.post('/login', function(req, res) {
 });
 
 
->>>>>>> ddb861087e2323afe738d9202543c7d3794144c7
 app.listen(3000, function() {
   console.log('Server is running on port 3000');
-})
+});
