@@ -15,6 +15,7 @@ app.get('/posts/:post_id/comments/new', function (req, res) {
 
 //create
 app.post('/posts/:post_id/comments', function (req,res) {
+  console.log('post ', req.params.post_id);
   db.Comment.create({commentText: req.body.commentText}, function (err, comment) {
     if (err){
       res.render('/posts/:post_id/comments/new')
