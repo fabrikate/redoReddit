@@ -46,7 +46,7 @@ app.get('/posts/:post_id/comments/:comment_id', function (req,res) {
 });
 
 //edit
-app.get('/posts/:post_id/comments/:comment_id/edit', routeMiddleware.ensureLoggedIn, function (req,res) {
+app.get('/posts/:post_id/comments/:comment_id/edit', routeMiddleware.ensureCorrectUser, function (req,res) {
   db.Comment.findById(req.params.comment_id).populate('post').exec(function (err, comment) {
     res.render('comments/edit', {comment: comment})
   });
@@ -64,7 +64,7 @@ app.put('/posts/:post_id/comments/:comment_id', function (req,res) {
 });
 
 //delete
-app.delete('/posts/:post_id/comments/:comment_id', function (req,res) {
+app.delete('/posts/:post_id/comments/:comment_id', routeMiddleware.ensureCorrectUser, function (req,res) {
   db.Comment.findByIdAndRemove(req.params.comment_id, function(err, comment) {
     if (err){
       res.render('comments/edit')

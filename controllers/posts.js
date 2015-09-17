@@ -38,7 +38,7 @@ app.get('/posts/:id', function (req,res){ //ask if we can string two populates t
 });
 
 //edit
-app.get('/posts/:id/edit', routeMiddleware.ensureLoggedIn, function (req,res){
+app.get('/posts/:id/edit', routeMiddleware.ensureCorrectUser, function (req,res){
   db.Post.findById(req.params.id, function (err, post){
     res.render('posts/edit', {post: post})
   });
@@ -56,7 +56,7 @@ app.put('/posts/:id', function (req,res){
 })
 
 //destroy
-app.delete('/posts/:id', function (req,res){
+app.delete('/posts/:id', routeMiddleware.ensureCorrectUser, function (req,res){
   db.Post.findByIdAndRemove (req.params.id, function (err,post){
     if (err){
       res.render('posts/show');

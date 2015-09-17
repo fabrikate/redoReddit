@@ -11,7 +11,7 @@ var routeHelpers = {
 
   ensureCorrectUser: function(req, res, next) {
     db.User.findById(req.params.id, function(err, user) {
-      if( user.userId !== req.session.id) {
+      if(user._id !== req.session.id) {
         res.redirect('/login');
       } else {
         return next();
