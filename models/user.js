@@ -8,7 +8,11 @@ var userSchema = new mongoose.Schema({
   posts:[{
     type: mongoose.Schema.Types.ObjectId,
     ref: "Post"
-  }]
+  }],
+  comments:[{
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "Comment"
+  }],
 })
 
 //userName and password authentication
@@ -38,6 +42,8 @@ userSchema.pre('remove', function(callback) {
 
 userSchema.methods.checkPassword = function(password, callback) {
   var user = this;
+  console.log('password: ', password);
+  console.log('user.password: ', user.password);
   bcrypt.compare(password, user.password, function(err, isMatch) {
     if( isMatch ) {
       callback(null, user);
@@ -49,8 +55,9 @@ userSchema.methods.checkPassword = function(password, callback) {
 
 userSchema.statics.authenticate = function(formData, callback) {
   this.findOne({
-    userName: formData.userName
+    name: formData.name
   }, function(err, user) {
+    console.log('formdata password: ', formData.password);
     if(user === null) {
       callback('Invalid userName or password', null);
     } else {

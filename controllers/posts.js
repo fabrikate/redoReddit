@@ -13,8 +13,20 @@ app.get('/posts/new', routeMiddleware.ensureLoggedIn, function (req,res){
 
 //create
 app.post('/posts', function (req,res){
-  db.Post.create({title: req.body.title, text: req.body.text}, function (err, user) {
-    res.redirect('/posts')
+  db.Post.create({title: req.body.title, text: req.body.text}, function (err, post) {
+    if(err) {
+      console.log(err)
+      res.render('posts/new');
+    } else {
+      console.log('req.session.id:', req.session.id)
+      db.User.findById(req.session.id, function(err, user) {
+        user.posts.push(post);
+        post.user = user._id;
+        post.save();
+        user.save();
+        res.redirect('/posts')
+      })
+    }
   });
 });
 

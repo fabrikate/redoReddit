@@ -29,11 +29,14 @@ app.get('/login', routeMiddleware.preventLoginSignup, function(req, res) {
 });
 
 app.post('/login', function(req, res) {
+  console.log('req.body.user: ', req.body.user);
   db.User.authenticate(req.body.user, function(err, user) {
     if(!err && user !== null) {
       req.login(user);
       res.redirect('/posts');
     } else {
+      console.log('error is: ', err)
+      console.log('user is: ', user)
       res.render('users/login', console.log('Error'));
     }
   });

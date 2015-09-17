@@ -20,10 +20,18 @@ app.post('/posts/:post_id/comments', function (req,res) {
       res.render('comments/new')
     } else {
       db.Post.findById(req.params.post_id, function (err, post) {
+        console.log(post.user);
         post.comments.push(comment);
         comment.post = post._id;
         comment.save();
         post.save();
+        db.User.findById(req.session.id, function(err, user) {
+          console.log(user);
+          user.comments.push(comment);
+          comment.user = user._id;
+          user.save();
+          comment.save();
+        });
         res.redirect('/posts/' + post._id + '/comments');
       });
     };
