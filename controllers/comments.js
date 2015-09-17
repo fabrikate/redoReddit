@@ -33,7 +33,8 @@ app.post('/posts/:post_id/comments', function (req,res) {
 
 //show
 app.get('/posts/:post_id/comments/:comment_id', function (req,res) {
-  db.Comment.findById(req.params.id).populate('post').exec( function (err, comment) {
+  db.Comment.findById(req.params.comment_id).populate('post').exec( function (err, comment) {
+    console.log('show comment is sending: ', comment);
     res.render('comments/show', {comment: comment})
   });
 });
@@ -41,6 +42,7 @@ app.get('/posts/:post_id/comments/:comment_id', function (req,res) {
 //edit
 app.get('/posts/:post_id/comments/:comment_id/edit', function (req,res) {
   db.Comment.findById(req.params.comment_id).populate('post').exec(function (err, comment) {
+    console.log('comment the id of sending is: ', comment._id)
     res.render('comments/edit', {comment: comment})
   });
 });
@@ -51,20 +53,18 @@ app.put('/posts/:post_id/comments/:comment_id', function (req,res) {
     if (err){
       res.render('comments/edit')
     } else {
-      a = comment.post.toString()
-      console.log(typeof comment.id)
-      res.redirect('posts/'+ a + '/comments/' + comment._id);
+      res.redirect(req.params.comment_id);
     };
   });
 });
 
 //delete
-app.delete('/posts/:post_id/comments', function (req,res) {
-  db.Comment.findByIdAndRemove(req.params.id, function(err, comment) {
+app.delete('/posts/:post_id/comments/:comment_id', function (req,res) {
+  db.Comment.findByIdAndRemove(req.params.comment_id, function(err, comment) {
     if (err){
       res.render('comments/edit')
     } else {
-      res.redirect('posts/:post_id/comments')
+      res.redirect('/posts/:post_id/comments')
     };
   });
 });
