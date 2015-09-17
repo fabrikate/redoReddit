@@ -7,7 +7,7 @@ app.get('/posts/:post_id/comments', function (req,res) {
 });
 
 //new
-app.get('/posts/:post_id/comments/new', function (req, res) {
+app.get('/posts/:post_id/comments/new', routeMiddleware.ensureLoggedIn, function (req, res) {
   db.Post.findById(req.params.post_id, function (err, post) {
     res.render('comments/new', {post: post})
   });
@@ -21,7 +21,6 @@ app.post('/posts/:post_id/comments', function (req,res) {
     } else {
       db.Post.findById(req.params.post_id, function (err, post) {
         post.comments.push(comment);
-        // post.comment = post.id;
         comment.post = post._id;
         comment.save();
         post.save();
@@ -34,15 +33,13 @@ app.post('/posts/:post_id/comments', function (req,res) {
 //show
 app.get('/posts/:post_id/comments/:comment_id', function (req,res) {
   db.Comment.findById(req.params.comment_id).populate('post').exec( function (err, comment) {
-    console.log('show comment is sending: ', comment);
     res.render('comments/show', {comment: comment})
   });
 });
 
 //edit
-app.get('/posts/:post_id/comments/:comment_id/edit', function (req,res) {
+app.get('/posts/:post_id/comments/:comment_id/edit', routeMiddleware.ensureLoggedIn, function (req,res) {
   db.Comment.findById(req.params.comment_id).populate('post').exec(function (err, comment) {
-    console.log('comment the id of sending is: ', comment._id)
     res.render('comments/edit', {comment: comment})
   });
 });

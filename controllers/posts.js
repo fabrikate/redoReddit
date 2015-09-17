@@ -7,7 +7,7 @@ app.get('/posts', function (req,res){
 });
 
 //new
-app.get('/posts/new', function (req,res){
+app.get('/posts/new', routeMiddleware.ensureLoggedIn, function (req,res){
   res.render('posts/new')
 });
 
@@ -26,7 +26,7 @@ app.get('/posts/:id', function (req,res){ //ask if we can string two populates t
 });
 
 //edit
-app.get('/posts/:id/edit', function (req,res){
+app.get('/posts/:id/edit', routeMiddleware.ensureLoggedIn, function (req,res){
   db.Post.findById(req.params.id, function (err, post){
     res.render('posts/edit', {post: post})
   });

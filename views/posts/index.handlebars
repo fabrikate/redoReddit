@@ -6,7 +6,7 @@
   <thead>
     <tr>
       <th>Title</th>
-      <th>Created By:</th>
+      <th></th>
       <th>Comment</th>
       <th>Edit</th>
       <th>Delete</th>
@@ -16,7 +16,7 @@
     {{#each posts}}
     <tr>
       <td><a href='posts/{{id}}'>{{title}}</a></td>
-      <!-- <td>{{user}}</td> -->
+
       <td>{{text}}</td>
       <td><a href='/posts/{{id}}/comments/new'>✏</a></td>
       <td><a href='/posts/{{id}}/edit'>Edit</a></td>
