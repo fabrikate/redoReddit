@@ -21,7 +21,8 @@ app.post('/posts/:post_id/comments', function (req,res) {
     } else {
       db.Post.findById(req.params.post_id, function (err, post) {
         post.comments.push(comment);
-        post.comment = post.id;
+        // post.comment = post.id;
+        comment.post = post._id;
         comment.save();
         post.save();
         res.redirect('/posts/' + post._id + '/comments');

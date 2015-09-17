@@ -32,7 +32,7 @@ userSchema.pre('save', function(next) {
 });
 
 userSchema.pre('remove', function(callback) {
-  User.remove({user_id: this._id}).exec();
+  Post.remove({user: this._id}).exec();
   callback();
 });
 

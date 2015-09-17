@@ -14,6 +14,11 @@ var postSchema = new mongoose.Schema({
   }]
 });
 
+postSchema.pre('remove', function(callback) {
+  Comment.remove({post: this._id}).exec();
+  callback();
+});
+
 var Post = mongoose.model("Post", postSchema)
 
 module.exports = Post;
