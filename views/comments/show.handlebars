@@ -1,0 +1,18 @@
+<h2> All commentsComments </h2>
+<table>
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Created By:</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    {{#each comments}}
+    <tr>
+      <td>{{comments.user}}</td>
+      <td>{{text}}</td>
+    </tr>
+    {{/each}}
+  </tbody>
+</table>
