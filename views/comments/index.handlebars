@@ -11,12 +11,11 @@
     </tr>
   </thead>
   <tbody>
-    {{#each post.comment}}
+    {{#each post.comments}}
     <tr>
-      <td>{{text}}</td>
-      <td><a href='/posts/{{post._id}}/comments/new'>✏</a></td>
-      <td><a href='/posts/{{post._id}}/comments/{{id}}/edit'>Edit</a></td>
-      <td><form action='/posts/{{post._id}}/comments/{{id}}?_method=delete' method='POST'><button>x</button></form></td>
+      <td>{{commentText}}</td>
+      <td><a href='/posts/{{post.id}}/comments/{{id}}/edit'>Edit</a></td>
+      <td><form action='/posts/{{id}}/comments/{{_id}}?_method=delete' method='POST'><button>x</button></form></td>
     </tr>
     {{/each}}
   </tbody>

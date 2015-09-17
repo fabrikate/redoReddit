@@ -3,7 +3,6 @@
   <thead>
     <tr>
       <th>Title</th>
-      <th>Created By:</th>
       <th></th>
     </tr>
   </thead>
@@ -11,15 +10,15 @@
     {{#each post}}
     <tr>
       <td>{{title}}</td>
-      <!-- <td>{{user}}</td> -->
       <td>{{text}}</td>
     </tr>
     {{/each}}
     {{#each post.comments}}
     <tr>
-      <td>{{text}}</td>
+      <td>{{commentText}}</td>
     </tr>
     {{/each}}
   </tbody>
 </table>
 <a href='/posts/{{post.id}}/comments/new'>Add a comment </a>
+<a href='/posts/{{post.id}}/comments'>View comments</a>
