@@ -40,18 +40,20 @@ app.get('/posts/:post_id/comments/:comment_id', function (req,res) {
 
 //edit
 app.get('/posts/:post_id/comments/:comment_id/edit', function (req,res) {
-  db.Comment.findById(req.params.post_id).populate('post').exec(function (err, comment) {
+  db.Comment.findById(req.params.comment_id).populate('post').exec(function (err, comment) {
     res.render('comments/edit', {comment: comment})
   });
 });
 
 //update
-app.put('/posts/:post_id/comments/comment_id', function (req,res) {
-  db.Comment.findByIdAndUpdate(req.params.id, {commentText: req.body.commentText}, function (err, comment) {
+app.put('/posts/:post_id/comments/:comment_id', function (req,res) {
+  db.Comment.findByIdAndUpdate(req.params.comment_id, {commentText: req.body.commentText}, function (err, comment) {
     if (err){
       res.render('comments/edit')
     } else {
-      res.redirect('posts/:post_id/comments/comment_id')
+      a = comment.post.toString()
+      console.log(typeof comment.id)
+      res.redirect('posts/'+ a + '/comments/' + comment._id);
     };
   });
 });

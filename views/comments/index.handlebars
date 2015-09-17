@@ -14,8 +14,8 @@
     {{#each post.comments}}
     <tr>
       <td>{{commentText}}</td>
-      <td><a href='/posts/{{post.id}}/comments/{{id}}/edit'>Edit</a></td>
-      <td><form action='/posts/{{id}}/comments/{{_id}}?_method=delete' method='POST'><button>x</button></form></td>
+      <td><a href='/posts/{{post}}/comments/{{id}}/edit'>Edit</a></td>
+      <td><form action='/posts/{{post}}/comments/{{id}}?_method=delete' method='POST'><button>x</button></form></td>
     </tr>
     {{/each}}
   </tbody>

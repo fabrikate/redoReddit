@@ -1,7 +1,7 @@
 <h2> Edit a Comment </h2>
-<form method='POST' action='/posts/{{post._id}}/comments/{{comment._id}}?_method=put'>
+<form method='POST' action='/posts/{{comment.post}}/comments/{{comment._id}}?_method=put'>
   <input type='commentText' name='commentText' value={{comment.commentText}} />
   <input type='submit' value='Edit' />
 </form>
-<a href='/posts/{{post._id}}/comments/{{comment._id}}'>Go Back</a>
+<a href='/posts/{{comment.post}}/comments/{{comment._id}}'>Go Back</a>
 
